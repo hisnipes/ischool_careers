@@ -1,0 +1,363 @@
+/*****************
+Global
+*****************/
+html, body {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
+
+body {
+	background-color: #234675;
+}
+
+p {
+	font-family: 'FreightText Pro';
+}
+
+.container-fluid {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.main-container {
+	padding: 130px 0px 15px 0px;
+}
+
+.panel-row {
+	padding: 15px 0px;
+}
+
+.nopadding {
+	padding: 0;
+	margin: 0;
+}
+
+.btn-default {
+	border: 0;
+	border-radius: 0;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.15em;
+	padding: 11px 20px;
+	margin-top: 20px;
+}
+
+/*****************
+Navbar
+*****************/
+
+.navbar {
+	border: 0;
+	margin-bottom: 0px;
+}
+
+.navbar-default {
+	background-color: #081f3e;
+	color: white;
+	border: 0;
+}
+
+	.navbar-brand {
+		padding: 20px 15px;
+	}
+
+	.navbar-default .navbar-brand {
+		color: white;
+	}
+
+	.navbar-default .navbar-nav > li > a {
+		color: white;
+		text-transform: uppercase;
+		font-weight: 500;
+		letter-spacing: 0.15em;
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+
+	.navbar-default .navbar-toggle {
+		border-color: white;
+	}
+		.navbar-default .navbar-toggle .icon-bar {
+			background-color: white;
+		}
+
+/*****************
+Main Body
+*****************/
+.panel-body {
+	padding: 0;
+	color: black;
+}
+
+.panel-default {
+	border-radius: 0;
+}
+	.panel-default p {
+		font-family: 'FreightText Pro';
+		font-size: 16px;
+		line-height: 145%;
+	}
+
+.panel-featured {
+	min-height: 470px;
+}
+	.featured-img img {
+		width: 100%;
+		height: auto;
+	}
+
+	a.play-overlay {
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		position: relative;
+	}
+		a.play-overlay .play-overlay-text {
+			position: absolute;
+			top: -60px;
+			/* http://stackoverflow.com/questions/8508275/how-to-center-a-position-absolute-element */
+			margin-left: auto;
+			margin-right: auto;
+			left: 0;
+			right: 0;
+			color: white;
+		}
+
+		a.play-overlay .featured-img-title {
+			display: block;
+			font-family: 'FreightText Pro';
+			font-size: 28px;
+			font-weight: 100;
+			letter-spacing: 0.01em;
+		}
+
+		.title-divider {
+			width: 30px;
+			border-top: 1px solid white;
+			display: block;
+			text-align: center;
+			margin: 30px auto 50px;
+		}
+
+		a.play-overlay .test-wrap {
+			width: 230px;
+			height: 50px;
+			padding: 13px 20px;			
+			border: 1px solid white;
+			background: rgba(255,255,255,0.2);
+			transition: background-color 0.5s;
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 16px;
+			letter-spacing: 0.15em;
+		}
+			a.play-overlay .test-wrap:hover {
+				background: rgba(245,166,35,0.7);
+				border: 1px solid #F5A623;
+			}
+
+.panel-text {
+	padding: 45px;
+}
+
+.category-header {
+	min-width: 225px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #85878B;
+	margin-bottom: 25px;
+}
+	.category-header span {
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 14px;
+		color: #1758AF;
+		letter-spacing: 0.15em;
+	}
+
+.panel-not-featured {
+	height: 370px;
+}
+
+.flip-container {
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	-o-perspective: 1000;
+	perspective: 1000;
+	background-color: #1e3d66;
+	cursor: pointer;
+}
+
+	.flip-container:hover .flipper,  
+	.flip-container.hover .flipper {
+		-webkit-transform: rotateY(180deg);
+		-moz-transform: rotateY(180deg);
+    	-o-transform: rotateY(180deg);
+		transform: rotateY(180deg);
+	}
+
+	.flip-container, .front, .back {
+		width: 370px;
+		height: 372px;
+	}
+
+	.flipper {
+		-webkit-transition: 0.6s;
+		-webkit-transform-style: preserve-3d;
+		-moz-transition: 0.6s;
+		-moz-transform-style: preserve-3d;
+	 	-o-transition: 0.6s;
+		-o-transform-style: preserve-3d;
+		transition: 0.6s;
+		transform-style: preserve-3d;
+		position: relative;
+	}
+
+	.front, .back {
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		-o-backface-visibility: hidden;
+		backface-visibility: hidden;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+		.front {
+			z-index: 2;
+		}
+
+			.front p {
+				font-size: 30px;
+				font-weight: 100;
+				font-style: italic;
+				letter-spacing: 0.01em;
+				color: white;
+			}
+
+			/* FIX THIS LATER!!!! Needs to be dynamic, probably inline html */
+			.front-1 {
+				background: url('../img/project_highlight.png') 0 0 no-repeat;
+				background-size: auto 101%;
+			}
+			/* FIX THIS LATER!!!! Needs to be dynamic, probably inline html */
+			.front-2 {
+				background: url('../img/student_spotlight.png') 0 0 no-repeat;
+				background-size: auto 101%;
+			}
+
+		.back {
+			background-color: #081F3E;
+			-webkit-transform: rotateY(180deg);
+			-moz-transform: rotateY(180deg);
+			-o-transform: rotateY(180deg);
+			transform: rotateY(180deg);
+		}
+
+			.back p {
+				color: white;
+			}
+
+.panel-video {
+}
+	.panel-video .category-header {
+		border-bottom: 1px solid white;
+	}
+		.panel-video .category-header span {
+			color: white;
+		}
+
+.panel-event-info {
+	background-color: #E7E9ED;
+	height: 274px;
+	text-align: center;
+	padding: 25px 20px;
+}
+	.panel-event-info p {
+		font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, sans-serif;
+	}
+
+	.event-date, .event-time {
+		font-weight: bold;
+		letter-spacing: 0.01em;
+		margin-bottom: 0px;
+	}
+
+	.event-date {
+		font-size: 24px !important;
+	}
+
+	.event-time {
+		font-size: 12px;
+	}
+
+	.event-location {
+		font-size: 12px;
+		font-weight: normal;
+		letter-spacing: 0;
+		padding: 10px 0px;
+	}
+
+	.panel-event-info .btn-default {
+		margin-top: 0px;
+		margin-bottom: 15px;
+		width: 120px;
+	}
+
+	.btn-secondary {
+		background-color: white;
+		color: #F5A623;
+	}
+
+.panel-yackle {
+	background-color: #D9E9FF;
+	height: 100%;
+	display: table;
+}
+	.panel-yackle .category-header {
+		border-bottom: 0;
+	}
+
+	.panel-yackle p {
+		font-size: 24px;
+		font-weight: 300;
+		font-style: italic;
+		letter-spacing: 0.01em;
+		color: #555555;
+	}
+
+	.yackle-actions-container {
+		text-align: center;
+		min-height: 224px;
+		display: table;
+	}
+
+		.yackle-actions {
+			display: table-cell;
+			vertical-align: middle;
+		}
+
+		.yackle-actions .btn {
+			width: 220px;
+		}
+
+/*****************
+Loading
+*****************/
+.loading-row {
+	padding: 0px 0px 55px 0px;
+	text-align: center;
+}
+.loading-text {
+	background-color: #081F3E;
+	padding: 10px 35px;
+	text-align: center;
+	font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, sans-serif;
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: 0.15em;
+	font-weight: 100;
+	transition: background-color 0.5s ease;
+}
+	.loading-text:hover {
+		background-color: #1758AF;
+	}
