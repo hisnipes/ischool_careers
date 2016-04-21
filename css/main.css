@@ -12,6 +12,8 @@ body {
 
 p {
 	font-family: 'FreightText Pro';
+	font-size: 16px;
+	line-height: 145%;
 }
 
 .container-fluid {
@@ -72,6 +74,10 @@ Navbar
 		letter-spacing: 0.15em;
 		padding-right: 20px;
 		padding-left: 20px;
+	}
+
+	.navbar-default .navbar-nav > li > a.active {
+		color: #F5A623;
 	}
 
 	.navbar-default .navbar-toggle {
@@ -360,4 +366,38 @@ Loading
 }
 	.loading-text:hover {
 		background-color: #1758AF;
+	}
+
+/*****************
+Projects
+*****************/
+#projects ul {
+	list-style-type: none;
+}
+	#projects ul li {
+		width: 28%;
+		min-height: 340px;
+		display: inline-block;
+		overflow: hidden;
+		margin: 20px 30px;
+		background-color: #FFF;
+		color: black;
+		position: relative;
+	}
+	#projects ul li img {
+		object-fit: cover;
+	}
+	.project h1 {
+		font-size: 26px;
+		padding: 0px 20px;
+	}
+	.project p {
+		font-style: italic;
+		padding: 0px 20px;
+	}
+	.project .project-btn {
+		position: absolute;
+		right: 0px;
+		top: 50px;
+		background-color: rgba(245, 166, 35, 0.8);
 	}

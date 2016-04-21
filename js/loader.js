@@ -112,14 +112,22 @@ function load_projects(){
     		});
       var image = $('<img/>', {
         'src': projects[i]['project_image_url'],
+        'width': '100%',
+        'height': '200'
       });
-      var title = $('<h3>',{
+      var title = $('<h1>',{
         html : projects[i]['project_title'],
       });
-      var subtitle = $('<h4>',{
+      var subtitle = $('<p>',{
         html: projects[i]['project_subtitle'],
       });
+      var readMore = $('<a>', {
+        'class': 'btn btn-default project-btn',
+        'href': '#',
+        html: 'View &rarr;'
+      });
 
+      readMore.appendTo(li);
       image.appendTo(li);
       title.appendTo(li);
       subtitle.appendTo(li);
