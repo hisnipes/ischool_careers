@@ -3,15 +3,15 @@ var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/18ZE7q38ce1
 var data_model;
 
 // Helper function to fetch details
-function fetch_detail(model, id){
+function fetch_detail(model, val, key){
   for(var i = 0; i < model.length; i++){
-    if(model[i]['id'] == id)
+    if(model[i][key] == val)
       return model[i];
   }
 }
 
 // Helper function to aggregate details
-function aggregate_project_details(project, user, track){
+function aggregate_project_details(project, user, track, subtrack){
   aggregate = {};
 
   aggregate['project_id'] = project['id'];
@@ -20,7 +20,6 @@ function aggregate_project_details(project, user, track){
   aggregate['project_video_url'] = project['project_video_url']
   aggregate['project_image_url'] = project['project_image_url']
   aggregate['project_article'] = project['project_article']
-  aggregate['project_skills'] = project['project_skills']
 
   aggregate['user-id'] = user['id'];
   aggregate['user_name'] = user['user_name'];
@@ -31,6 +30,11 @@ function aggregate_project_details(project, user, track){
   aggregate['track_id'] = track['id'];
   aggregate['track_name'] = track['track_name'];
   aggregate['track_description'] = track['track_description'];
+
+  aggregate['subtrack_id'] = subtrack['id'];
+  aggregate['subtrack_name'] = subtrack['subtrack_name'];
+  aggregate['subtrack_description'] = subtrack['subtrack_description'];
+
   return aggregate;
 }
 
@@ -63,8 +67,8 @@ function fetch_videos(){
 
   var ret_detail = [];
   for(var i = 0; i < videos.length; i++){
-    user_detail = fetch_detail(users, videos[i]['video_speaker_id']);
-    track_detail = fetch_detail(tracks, videos[i]['video_track_ids']);
+    user_detail = fetch_detail(users, videos[i]['video_speaker_id'], 'user_name');
+    track_detail = fetch_detail(tracks, videos[i]['video_track_ids'], 'track_name');
     loop_field = aggregate_video_details(videos[i], user_detail, track_detail);
     ret_detail.push(loop_field);
   }
@@ -77,13 +81,15 @@ function fetch_projects(){
   projects = data_model.Projects.all();
   users = data_model.Users.all();
   tracks = data_model.Tracks.all();
+  sub_tacks = data_model.Subtracks.all();
 
   var ret_detail = [];
   for(var i = 0; i < projects.length; i++){
-    console.log(i, projects[i]);
-    user_detail = fetch_detail(users, projects[i]['project_owner_ids']);
-    track_detail = fetch_detail(tracks, projects[i]['project_track_ids']);
-    loop_field = aggregate_project_details(projects[i], user_detail, track_detail);
+    // console.log(i, projects[i]);
+    user_detail = fetch_detail(users, projects[i]['project_owner_ids'], 'user_name');
+    track_detail = fetch_detail(tracks, projects[i]['project_track_ids'], 'track_name');
+    subtrack_detail = fetch_detail(sub_tacks, projects[i]['project_skills'], 'subtrack_name');
+    loop_field = aggregate_project_details(projects[i], user_detail, track_detail, subtrack_detail);
     ret_detail.push(loop_field);
   }
   return ret_detail;
@@ -110,16 +116,21 @@ function get_all_skills() {
     });
     var skillLink = $('<a/>', {
       'class': 'filter',
-      href: '#',
+      'href': '#',
       'data-filter': '.' + all_skills[i],
       html: all_skills_proper[i]
+    });
+    skillLink.click({subtrack_name: all_skills[i]}, function(event){
+      var projects = fetch_projects_by_subtrack(event.data.subtrack_name);
+      load_projects(projects);
+      return false;
     });
     skillLink.appendTo(li);
     li.appendTo($(".sidebar ul"));
   }
 // ex: <li><a href="#" class="filter" data-filter=".data-science">Data Science</a></li>
 }
-  
+
   // Title Case helper function
   function toTitleCase(string) {
       // \u00C0-\u00ff for a happy Latin-1
@@ -138,17 +149,19 @@ function fetch_videos_by_track(track_id){
 }
 
 // Fetch Projects by track
-function fetch_projects_by_track(track_id){
-  $.grep( fetch_projects(), function( n, i ) {
-    return n.track_id === track_id;
+function fetch_projects_by_subtrack(subtrack_name){
+  var all_projects = fetch_projects();
+  matched_projects = [];
+  $.grep( all_projects, function( n, i ) {
+    if(n.subtrack_name === subtrack_name)
+      matched_projects.push(n);
   });
+  return matched_projects;
 }
 
-function load_projects(){
-    projects = fetch_projects();
-    // $('#projects')
-    //
-    for(i = 0; i < projects.length; i++){
+function load_projects(projects){
+    $('#projects ul').empty();
+    for(var i = 0; i < projects.length; i++){
       var li = $('<li/>', {
     		'class': 'project ' + "mix " + projects[i]['project_skills'],
         'data-myorder': i,
@@ -188,8 +201,7 @@ function load_projects(){
 // Called when tabletop loads the spreadsheet
 function on_data_load(data, tabletop){
   data_model = data;
-  sanity_check(data, tabletop);
-  load_projects();
+  load_projects(fetch_projects());
   get_all_skills();
   $('#projects').mixItUp();
 }
