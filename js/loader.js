@@ -11,7 +11,7 @@ function fetch_detail(model, val, key){
 }
 
 // Helper function to aggregate details
-function aggregate_project_details(project, user, track, subtrack){
+function aggregate_project_details(project, user, track, skill){
   aggregate = {};
 
   aggregate['project_id'] = project['id'];
@@ -31,9 +31,9 @@ function aggregate_project_details(project, user, track, subtrack){
   aggregate['track_name'] = track['track_name'];
   aggregate['track_description'] = track['track_description'];
 
-  aggregate['subtrack_id'] = subtrack['id'];
-  aggregate['subtrack_name'] = subtrack['subtrack_name'];
-  aggregate['subtrack_description'] = subtrack['subtrack_description'];
+  aggregate['skill_id'] = skill['id'];
+  aggregate['skill_name'] = skill['skill_name'];
+  aggregate['skill_description'] = skill['skill_description'];
 
   return aggregate;
 }
@@ -81,15 +81,15 @@ function fetch_projects(){
   projects = data_model.Projects.all();
   users = data_model.Users.all();
   tracks = data_model.Tracks.all();
-  sub_tacks = data_model.Subtracks.all();
+  skills = data_model.Skills.all();
 
   var ret_detail = [];
   for(var i = 0; i < projects.length; i++){
     // console.log(i, projects[i]);
     user_detail = fetch_detail(users, projects[i]['project_owner_ids'], 'user_name');
     track_detail = fetch_detail(tracks, projects[i]['project_track_ids'], 'track_name');
-    subtrack_detail = fetch_detail(sub_tacks, projects[i]['project_skills'], 'subtrack_name');
-    loop_field = aggregate_project_details(projects[i], user_detail, track_detail, subtrack_detail);
+    skill_detail = fetch_detail(skills, projects[i]['project_skills'], 'skill_name');
+    loop_field = aggregate_project_details(projects[i], user_detail, track_detail, skill_detail);
     ret_detail.push(loop_field);
   }
   return ret_detail;
@@ -124,8 +124,8 @@ function get_all_skills() {
       'data-filter': '.' + all_skills[i],
       html: all_skills_proper[i]
     });
-    skillLink.click({subtrack_name: all_skills[i]}, function(event){
-      var projects = fetch_projects_by_subtrack(event.data.subtrack_name);
+    skillLink.click({skill_name: all_skills[i]}, function(event){
+      var projects = fetch_projects_by_skill(event.data.skill_name);
       load_projects(projects);
       return false;
     });
@@ -153,11 +153,11 @@ function fetch_videos_by_track(track_id){
 }
 
 // Fetch Projects by track
-function fetch_projects_by_subtrack(subtrack_name){
+function fetch_projects_by_skill(skill_name){
   var all_projects = fetch_projects();
   matched_projects = [];
   $.grep( all_projects, function( n, i ) {
-    if(n.subtrack_name === subtrack_name)
+    if(n.skill_name === skill_name)
       matched_projects.push(n);
   });
   return matched_projects;
