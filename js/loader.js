@@ -233,7 +233,13 @@ function get_spotlight_students(){
 
 function get_spotlight_projects(){
   projects = data_model.Projects.all();
-  return get_2_randoms(projects);
+  spot_projects =  get_2_randoms(projects);
+  $('#student_spotlight_1_line1').html(spot_projects[0].project_title);
+  $('#student_spotlight_1_subtext').html(spot_projects[0].project_subtitle);
+
+  $('#student_spotlight_2_line1').html(spot_projects[1].project_title);
+  $('#student_spotlight_2_subtext').html(spot_projects[1].project_subtitle);
+  $('#student_spotlight_2_subtext_back').html(spot_projects[1].project_subtitle);
 }
 // Called when tabletop loads the spreadsheet
 function on_data_load(data, tabletop){
