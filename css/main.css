@@ -26,6 +26,7 @@ p {
 	margin-top: 80px;
 	margin-bottom: 20px;
 	padding: 0px;
+	background-color: #0b2a55;
 }
 
 .secondary-container {
@@ -177,6 +178,15 @@ Sidebar
 /*****************
 Main Body
 *****************/
+.hero-image {
+	background: url(../img/slide_1.png) no-repeat;
+	background-size: cover;
+	background-position: 15% 10%;
+	margin: 0 auto;
+	width: 100%;
+	height: 300px;
+	text-align: center;
+}
 .panel-body {
 	padding: 0;
 	color: black;

@@ -104,12 +104,16 @@ function get_all_skills() {
   }
   all_skills = jQuery.unique(all_skills);
 
+  console.log("all_skills", all_skills);
+
   var all_skills_proper = [];
   for (var i = 0; i < all_skills.length; i++){
     skill = all_skills[i];
     skill = toTitleCase(skill.replace("-"," "));
     all_skills_proper.push(skill);
   };
+
+  console.log("all_skills_proper", all_skills_proper);
 
   for (i = 0; i < all_skills_proper.length; i++){
     var li = $('<li/>', {
@@ -160,6 +164,7 @@ function fetch_projects_by_subtrack(subtrack_name){
 }
 
 function load_projects(projects){
+    projects = data_model.Projects.all();
     $('#projects ul').empty();
     for(var i = 0; i < projects.length; i++){
       var li = $('<li/>', {
@@ -201,8 +206,8 @@ function load_projects(projects){
 // Called when tabletop loads the spreadsheet
 function on_data_load(data, tabletop){
   data_model = data;
-  load_projects(fetch_projects());
   get_all_skills();
+  load_projects(fetch_projects());
   $('#projects').mixItUp();
 }
 
