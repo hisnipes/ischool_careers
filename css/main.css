@@ -23,7 +23,13 @@ p {
 }
 
 .main-container {
-	padding: 130px 0px 15px 0px;
+	margin-top: 80px;
+	margin-bottom: 20px;
+	padding: 0px;
+}
+
+.secondary-container {
+	margin-bottom: 80px;
 }
 
 .project-container {
@@ -32,7 +38,7 @@ p {
 }
 
 .panel-row {
-	padding: 15px 0px;
+	padding: 15px 0px 0px 0px;
 }
 
 .nopadding {
@@ -112,26 +118,51 @@ Sidebar
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
+    background-color: #081f3e;
     border-right: 1px solid #eee;
   }
 }
 
 /* Sidebar navigation */
 .nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
+	margin-right: -21px; /* 20px padding + 1px border */
+	margin-bottom: 20px;
+	margin-left: -20px;
+	margin-top: 20px;
 }
 .nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
+	color: #FFF;
+	background-color: transparent;
+}
+.nav-sidebar > li > a:hover {
+	color: #F5A623;
+	background-color: transparent;
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
+	color: #F5A623;
+	background-color: transparent;
+}
+
+.sidebar h1 {
+	margin-bottom: 20px;
+	font-weight: 100;
+	font-size: 24px;
+}
+
+.sidebar .input-group .form-control:first-child {
+	border-radius: 0px;
+	border: 0px;
+}
+
+.sidebar .btn-default {
+	padding: 6px 8px;
+	margin: 0px;
+	background-color: transparent;
+	border: 1px solid #FFF;
 }
 
 /*****************
@@ -178,7 +209,7 @@ Main Body
 
 		a.play-overlay .featured-img-title {
 			display: block;
-			font-family: 'FreightText Pro';
+			font-family: 'Proxima Nova';
 			font-size: 28px;
 			font-weight: 100;
 			letter-spacing: 0.01em;
@@ -223,7 +254,7 @@ Main Body
 		text-transform: uppercase;
 		font-weight: bold;
 		font-size: 14px;
-		color: #1758AF;
+		color: #0b2a55;
 		letter-spacing: 0.15em;
 	}
 
@@ -236,7 +267,7 @@ Main Body
 	-moz-perspective: 1000;
 	-o-perspective: 1000;
 	perspective: 1000;
-	background-color: #1e3d66;
+	background-color: #b7c1c8;
 	cursor: pointer;
 }
 
@@ -299,7 +330,7 @@ Main Body
 			}
 
 		.back {
-			background-color: #081F3E;
+			background-color: #0b2a55;
 			-webkit-transform: rotateY(180deg);
 			-moz-transform: rotateY(180deg);
 			-o-transform: rotateY(180deg);
@@ -320,7 +351,7 @@ Main Body
 		}
 
 .panel-event-info {
-	background-color: #E7E9ED;
+	background-color: #f1f3f4;
 	height: 274px;
 	text-align: center;
 	padding: 25px 20px;
@@ -333,6 +364,7 @@ Main Body
 		font-weight: bold;
 		letter-spacing: 0.01em;
 		margin-bottom: 0px;
+		color: #0b2a55;
 	}
 
 	.event-date {
@@ -362,11 +394,16 @@ Main Body
 	}
 
 .panel-yackle {
-	background-color: #D9E9FF;
+	background-color: #0b2a55;
 	height: 100%;
 	display: table;
 }
-	.panel-yackle .category-header {
+	.panel-yackle .category-header span {
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 14px;
+		color: #FFF;
+		letter-spacing: 0.15em;
 		border-bottom: 0;
 	}
 
@@ -375,7 +412,7 @@ Main Body
 		font-weight: 300;
 		font-style: italic;
 		letter-spacing: 0.01em;
-		color: #555555;
+		color: #FFF;
 	}
 
 	.yackle-actions-container {
