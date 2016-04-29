@@ -449,6 +449,13 @@ Main Body
 			width: 220px;
 		}
 
+
+.modal-content {
+	color: #000;
+}
+
+
+
 /*****************
 Loading
 *****************/
@@ -520,8 +527,6 @@ Projects
 		top: 50px;
 		background-color: rgba(245, 166, 35, 0.8);
 	}
-
-
 
 #projects .mix{
     display: none;

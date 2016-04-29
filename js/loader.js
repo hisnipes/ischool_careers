@@ -245,8 +245,8 @@ function get_spotlight_projects(){
 function on_data_load(data, tabletop){
   data_model = data;
   get_all_skills();
-  get_spotlight_students();
-  get_spotlight_projects();
+  // get_spotlight_students();
+  // get_spotlight_projects();
   load_projects(fetch_projects());
   $('#projects').mixItUp();
 }
