@@ -21,7 +21,7 @@ function aggregate_project_details(project, user, track, skill){
   aggregate['project_image_url'] = project['project_image_url']
   aggregate['project_article'] = project['project_article']
 
-  aggregate['user-id'] = user['id'];
+  aggregate['user_id'] = user['id'];
   aggregate['user_name'] = user['user_name'];
   aggregate['user_email'] = user['user_email'];
   aggregate['user_tagline'] = user['user_tagline'];
