@@ -11,6 +11,20 @@
 		color: black;
 		position: relative;
 	}
+}
 
-
+@media (max-width: 1048px) {
+	.hero-image h1 {
+		font-family: 'FreightText Pro';
+		font-weight: 300;
+		display: inline;    
+		position: absolute;
+	    margin: 0 auto;
+	    text-align: center;
+	    left: 0;
+	    right: 0;
+	    line-height: 140%;
+	    top: 25%;
+	    width: 70%;
+	}
 }
