@@ -108,12 +108,18 @@ function load_projects(){
     //
     for(i = 0; i < projects.length; i++){
       var li = $('<li/>', {
-    		 'class': 'project',
+    		'class': 'project',
     		});
+      var outerDiv = $('<div/>', {
+        'class': 'project-caption-wrapper',
+      });
+      var innerDiv = $('<div/>', {
+        'class': 'project-caption',
+      });
       var image = $('<img/>', {
         'src': projects[i]['project_image_url'],
         'width': '100%',
-        'height': '200'
+        'height': '180'
       });
       var title = $('<h1>',{
         html : projects[i]['project_title'],
@@ -128,9 +134,11 @@ function load_projects(){
       });
 
       readMore.appendTo(li);
-      image.appendTo(li);
       title.appendTo(li);
-      subtitle.appendTo(li);
+      image.appendTo(li);
+      subtitle.appendTo(innerDiv);
+      innerDiv.appendTo(outerDiv);
+      outerDiv.appendTo(li);
       li.appendTo($('#projects ul'));
     }
 }
