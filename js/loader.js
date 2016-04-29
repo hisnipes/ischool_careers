@@ -203,10 +203,39 @@ function load_projects(projects){
     }
 }
 
+function get_2_randoms(model){
+  var rands = [];
+  var ret_model = [];
+  rands.push(Math.floor((Math.random() * model.length)));
+  while(1){
+    var rand_index = Math.floor((Math.random() * model.length));
+    if($.inArray(rand_index, rands) === -1){
+      rands.push(rand_index);
+      break;
+    }
+  }
+  ret_model.push(model[rands[0]]);
+  ret_model.push(model[rands[1]]);
+  console.log(ret_model);
+  return ret_model;
+}
+
+
+function get_spotlight_students(){
+  users = data_model.Users.all();
+  return get_2_randoms(users);
+}
+
+function get_spotlight_projects(){
+  projects = data_model.Projects.all();
+  return get_2_randoms(projects);
+}
 // Called when tabletop loads the spreadsheet
 function on_data_load(data, tabletop){
   data_model = data;
   get_all_skills();
+  get_spotlight_students();
+  get_spotlight_projects();
   load_projects(fetch_projects());
   $('#projects').mixItUp();
 }
