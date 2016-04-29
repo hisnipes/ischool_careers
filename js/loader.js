@@ -20,6 +20,7 @@ function aggregate_project_details(project, user, track){
   aggregate['project_video_url'] = project['project_video_url']
   aggregate['project_image_url'] = project['project_image_url']
   aggregate['project_article'] = project['project_article']
+  aggregate['project_skills'] = project['project_skills']
 
   aggregate['user-id'] = user['id'];
   aggregate['user_name'] = user['user_name'];
@@ -88,6 +89,47 @@ function fetch_projects(){
   return ret_detail;
 }
 
+// Automatically populate filters in sidebar based on data
+function get_all_skills() {
+  projects = data_model.Projects.all();
+  var all_skills = [];
+  for (var i = 0; i < projects.length; i++){
+    all_skills.push(projects[i]['project_skills']);
+  }
+  all_skills = jQuery.unique(all_skills);
+
+  var all_skills_proper = [];
+  for (var i = 0; i < all_skills.length; i++){
+    skill = all_skills[i];
+    skill = toTitleCase(skill.replace("-"," "));
+    all_skills_proper.push(skill);
+  };
+
+  for (i = 0; i < all_skills_proper.length; i++){
+    var li = $('<li/>', {
+    });
+    var skillLink = $('<a/>', {
+      'class': 'filter',
+      href: '#',
+      'data-filter': '.' + all_skills[i],
+      html: all_skills_proper[i]
+    });
+    skillLink.appendTo(li);
+    li.appendTo($(".sidebar ul"));
+  }
+// ex: <li><a href="#" class="filter" data-filter=".data-science">Data Science</a></li>
+}
+  
+  // Title Case helper function
+  function toTitleCase(string) {
+      // \u00C0-\u00ff for a happy Latin-1
+      return string.toLowerCase().replace(/_/g, ' ').replace(/\b([a-z\u00C0-\u00ff])/g, function (_, initial) {
+          return initial.toUpperCase();
+      }).replace(/(\s(?:de|a|o|e|da|do|em|ou|[\u00C0-\u00ff]))\b/ig, function (_, match) {
+          return match.toLowerCase();
+      });
+  }
+
 // Fetch Videos by track
 function fetch_videos_by_track(track_id){
   $.grep( fetch_videos(), function( n, i ) {
@@ -108,7 +150,8 @@ function load_projects(){
     //
     for(i = 0; i < projects.length; i++){
       var li = $('<li/>', {
-    		'class': 'project',
+    		'class': 'project ' + "mix " + projects[i]['project_skills'],
+        'data-myorder': i,
     		});
       var outerDiv = $('<div/>', {
         'class': 'project-caption-wrapper',
@@ -132,7 +175,6 @@ function load_projects(){
         'href': '#',
         html: 'View &rarr;'
       });
-
       readMore.appendTo(li);
       title.appendTo(li);
       image.appendTo(li);
@@ -148,6 +190,8 @@ function on_data_load(data, tabletop){
   data_model = data;
   sanity_check(data, tabletop);
   load_projects();
+  get_all_skills();
+  $('#projects').mixItUp();
 }
 
 $(document).ready(function(){
