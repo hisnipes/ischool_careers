@@ -223,7 +223,12 @@ function get_2_randoms(model){
 
 function get_spotlight_students(){
   users = data_model.Users.all();
-  return get_2_randoms(users);
+  spot_users = get_2_randoms(users);
+  $('#student_spotlight_1_line1').html(spot_users[0].user_name);
+  $('#student_spotlight_1_subtext').html(spot_users[0].user_tagline);
+
+  $('#student_spotlight_2_line1').html(spot_users[1].user_name);
+  $('#student_spotlight_2_subtext').html(spot_users[1].user_tagline);
 }
 
 function get_spotlight_projects(){
