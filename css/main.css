@@ -428,6 +428,7 @@ Main Body
 .panel-yackle {
 	background-color: #0b2a55;
 	height: 100%;
+	width: 100%;
 	display: table;
 }
 	.panel-yackle .category-header span {
@@ -461,6 +462,7 @@ Main Body
 		.yackle-actions .btn {
 			width: 220px;
 			display: block;
+			margin: 20px auto;
 		}
 
 
