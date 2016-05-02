@@ -226,11 +226,11 @@ function get_spotlight_students(){
   users = data_model.Users.all();
   spot_users = get_2_randoms(users);
   $('#student_spotlight_1_name').html(spot_users[0].user_name + ", ");
-  $('#student_spotlight_1_year').html(spot_users[0].user_details);  
+  $('#student_spotlight_1_year').html(spot_users[0].user_details);
   $('#student_spotlight_1_subtext').html(spot_users[0].user_tagline);
 
   $('#student_spotlight_2_name').html(spot_users[1].user_name);
-  $('#student_spotlight_2_year').html(spot_users[1].user_details);  
+  $('#student_spotlight_2_year').html(spot_users[1].user_details);
   $('#student_spotlight_2_subtext').html(spot_users[1].user_tagline);
 }
 
