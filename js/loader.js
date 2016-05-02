@@ -225,29 +225,31 @@ function get_2_randoms(model){
 function get_spotlight_students(){
   users = data_model.Users.all();
   spot_users = get_2_randoms(users);
-  $('#student_spotlight_1_line1').html(spot_users[0].user_name);
+  $('#student_spotlight_1_name').html(spot_users[0].user_name + ", ");
+  $('#student_spotlight_1_year').html(spot_users[0].user_details);  
   $('#student_spotlight_1_subtext').html(spot_users[0].user_tagline);
 
-  $('#student_spotlight_2_line1').html(spot_users[1].user_name);
+  $('#student_spotlight_2_name').html(spot_users[1].user_name);
+  $('#student_spotlight_2_year').html(spot_users[1].user_details);  
   $('#student_spotlight_2_subtext').html(spot_users[1].user_tagline);
 }
 
 function get_spotlight_projects(){
   projects = data_model.Projects.all();
   spot_projects =  get_2_randoms(projects);
-  $('#student_spotlight_1_line1').html(spot_projects[0].project_title);
-  $('#student_spotlight_1_subtext').html(spot_projects[0].project_subtitle);
+  $('#project_spotlight_1_line1').html(spot_projects[0].project_title);
+  $('#project_spotlight_1_subtext').html(spot_projects[0].project_subtitle);
 
-  $('#student_spotlight_2_line1').html(spot_projects[1].project_title);
-  $('#student_spotlight_2_subtext').html(spot_projects[1].project_subtitle);
-  $('#student_spotlight_2_subtext_back').html(spot_projects[1].project_subtitle);
+  $('#project_spotlight_2_line1').html(spot_projects[1].project_title);
+  $('#project_spotlight_2_subtext').html(spot_projects[1].project_subtitle);
+  $('#project_spotlight_2_subtext_back').html(spot_projects[1].project_subtitle);
 }
 // Called when tabletop loads the spreadsheet
 function on_data_load(data, tabletop){
   data_model = data;
   get_all_skills();
-  // get_spotlight_students();
-  // get_spotlight_projects();
+  get_spotlight_students();
+  get_spotlight_projects();
   load_projects(fetch_projects());
   $('#projects').mixItUp();
 }

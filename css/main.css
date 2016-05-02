@@ -179,7 +179,7 @@ Sidebar
 Main Body
 *****************/
 .hero-image {
-	background: url(../img/slide_1.png) no-repeat;
+	background: url(../img/slide_3.png) no-repeat;
 	background-size: cover;
 	background-position: 15% 10%;
 	margin: 0 auto;
@@ -187,6 +187,19 @@ Main Body
 	height: 300px;
 	text-align: center;
 }
+	.hero-image h1 {
+		font-family: 'FreightText Pro';
+		font-weight: 300;
+		display: inline;    
+		position: absolute;
+	    margin: 0 auto;
+	    text-align: center;
+	    left: 0;
+	    right: 0;
+	    line-height: 140%;
+	    top: 35%;
+	    width: 70%;
+	}
 .panel-body {
 	padding: 0;
 	color: black;
@@ -415,6 +428,7 @@ Main Body
 .panel-yackle {
 	background-color: #0b2a55;
 	height: 100%;
+	width: 100%;
 	display: table;
 }
 	.panel-yackle .category-header span {
@@ -447,6 +461,8 @@ Main Body
 
 		.yackle-actions .btn {
 			width: 220px;
+			display: block;
+			margin: 20px auto;
 		}
 
 
