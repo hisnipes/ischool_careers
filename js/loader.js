@@ -16,7 +16,7 @@ function aggregate_project_details(project, user, track, skill){
 
   aggregate['project_title'] = project['project_title']
   aggregate['project_subtitle'] = project['project_subtitle']
-  aggregate['project_video_url'] = project['project_video_url']
+  aggregate['project_media_url'] = project['project_media_url']
   aggregate['project_image_url'] = project['project_image_url']
   aggregate['project_article'] = project['project_article']
 
@@ -42,6 +42,7 @@ function aggregate_video_details(video, user, track){
   aggregate['video_text'] = video['video_text']
   aggregate['video_url'] = video['video_url']
 
+  aggregate['user_id'] = user['id'];
   aggregate['user_name'] = user['user_name'];
   aggregate['user_email'] = user['user_email'];
   aggregate['user_tagline'] = user['user_tagline'];
@@ -244,29 +245,30 @@ function get_spotlight_students(){
   $('#student_spotlight_1_year').html(spot_users[0].user_details);
   $('#student_spotlight_1_subtext').html(spot_users[0].user_tagline);
 
-  $('#student_spotlight_2_name').html(spot_users[1].user_name);
+  $('#student_spotlight_2_name').html(spot_users[1].user_name + ", ");
   $('#student_spotlight_2_year').html(spot_users[1].user_details);
   $('#student_spotlight_2_subtext').html(spot_users[1].user_tagline);
 
-  $('#student_spotlight_3_name').html(spot_users[2].user_name);
-  $('#student_spotlight_3_year').html(spot_users[2].user_details);
-  $('#student_spotlight_3_subtext').html(spot_users[2].user_tagline);
-  $('#student_spotlight_3_subtext_back').html(spot_users[2].user_tagline);
-
   $('#student_spotlight_1_video').attr('href', fetch_videos_by_speaker(spot_users[0].user_name));
   $('#student_spotlight_2_video').attr('href', fetch_videos_by_speaker(spot_users[1].user_name));
-  $('#student_spotlight_2_video').attr('href', fetch_videos_by_speaker(spot_users[2].user_name));
 }
 
 function get_spotlight_projects(){
   projects = data_model.Projects.all();
   spot_projects =  get_n_randoms(projects, 2);
-  $('#project_spotlight_1_line1').html(spot_projects[0].project_title);
-  $('#project_spotlight_1_subtext').html(spot_projects[0].project_subtitle);
 
-  $('#project_spotlight_2_line1').html(spot_projects[1].project_title);
-  $('#project_spotlight_2_subtext').html(spot_projects[1].project_subtitle);
-  $('#project_spotlight_2_subtext_back').html(spot_projects[1].project_subtitle);
+  $('#project_spotlight_1_subtitle').html(spot_projects[0].project_subtitle);
+  document.getElementById('project_spotlight_1').style.backgroundImage = "url(" + spot_projects[0].project_image_url + ")";
+  $('#project_spotlight_1_title').html(spot_projects[0].project_title);
+  $('#project_spotlight_1_article').html(spot_projects[0].project_article);
+  document.getElementById('project_spotlight_1_btn').href = spot_projects[0].project_media_url;
+
+  $('#project_spotlight_2_subtitle').html(spot_projects[1].project_subtitle);
+  document.getElementById('project_spotlight_2').style.backgroundImage = "url(" + spot_projects[1].project_image_url + ")";
+  $('#project_spotlight_2_title').html(spot_projects[1].project_title);
+  $('#project_spotlight_2_article').html(spot_projects[1].project_article);
+  document.getElementById('project_spotlight_2_btn').href = spot_projects[1].project_media_url;
+
 }
 // Called when tabletop loads the spreadsheet
 function on_data_load(data, tabletop){
