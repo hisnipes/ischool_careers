@@ -204,19 +204,23 @@ function load_projects(projects){
     }
 }
 
-function get_2_randoms(model){
+function get_n_randoms(model, n){
   var rands = [];
   var ret_model = [];
   rands.push(Math.floor((Math.random() * model.length)));
+  var counter = 1;
   while(1){
     var rand_index = Math.floor((Math.random() * model.length));
     if($.inArray(rand_index, rands) === -1){
       rands.push(rand_index);
-      break;
+      counter = counter + 1;
+      if(counter == n)
+        break;
     }
   }
-  ret_model.push(model[rands[0]]);
-  ret_model.push(model[rands[1]]);
+  for(var i = 0; i < rands.length; i++){
+    ret_model.push(model[rands[i]]);
+  }
   console.log(ret_model);
   return ret_model;
 }
@@ -224,7 +228,7 @@ function get_2_randoms(model){
 
 function get_spotlight_students(){
   users = data_model.Users.all();
-  spot_users = get_2_randoms(users);
+  spot_users = get_n_randoms(users, 3);
   $('#student_spotlight_1_name').html(spot_users[0].user_name + ", ");
   $('#student_spotlight_1_year').html(spot_users[0].user_details);
   $('#student_spotlight_1_subtext').html(spot_users[0].user_tagline);
@@ -232,11 +236,19 @@ function get_spotlight_students(){
   $('#student_spotlight_2_name').html(spot_users[1].user_name);
   $('#student_spotlight_2_year').html(spot_users[1].user_details);
   $('#student_spotlight_2_subtext').html(spot_users[1].user_tagline);
+
+  var video_url = fetch_videos_by_speaker(spot_users[0].user_name);
+  console.log(video_url);
+  $('#student_spotlight_1_video').attr('href', video_url);
+
+  video_url = fetch_videos_by_speaker(spot_users[1].user_name);
+  console.log(video_url);
+  $('#student_spotlight_2_video').attr('href', video_url);
 }
 
 function get_spotlight_projects(){
   projects = data_model.Projects.all();
-  spot_projects =  get_2_randoms(projects);
+  spot_projects =  get_n_randoms(projects, 2);
   $('#project_spotlight_1_line1').html(spot_projects[0].project_title);
   $('#project_spotlight_1_subtext').html(spot_projects[0].project_subtitle);
 
