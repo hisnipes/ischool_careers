@@ -269,16 +269,30 @@ function get_spotlight_projects(){
 
 }
 // Called when tabletop loads the spreadsheet and on refresh of every page
-function on_data_load(data, tabletop){
+function on_data_load_index(data, tabletop){
   data_model = data;
-  get_all_skills();
   get_spotlight_students();
   get_spotlight_projects();
+}
+
+function on_data_load_projects(data, tabletop){
+  data_model = data;
+  get_all_skills();
   load_projects(fetch_projects());
   $('#projects').mixItUp();
 }
 
 $(document).ready(function(){
-  Tabletop.init( { key: public_spreadsheet_url,
-                   callback: on_data_load } );
+  var spl_arr = document.URL.split('/');
+  var page = spl_arr[spl_arr.length-1];
+
+  if(page === 'index.html'){
+    Tabletop.init( { key: public_spreadsheet_url,
+                   callback: on_data_load_index } );
+
+  }
+  else if(page === 'projects.html'){
+    Tabletop.init( { key: public_spreadsheet_url,
+                   callback: on_data_load_projects } );
+  }
 });
