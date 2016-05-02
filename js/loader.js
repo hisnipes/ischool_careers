@@ -42,10 +42,7 @@ function aggregate_video_details(video, user, track){
   aggregate['video_text'] = video['video_text']
   aggregate['video_url'] = video['video_url']
 
-<<<<<<< Updated upstream
-=======
   aggregate['user_id'] = user['id'];
->>>>>>> Stashed changes
   aggregate['user_name'] = user['user_name'];
   aggregate['user_email'] = user['user_email'];
   aggregate['user_tagline'] = user['user_tagline'];
