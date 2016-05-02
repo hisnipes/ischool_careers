@@ -49,6 +49,7 @@ function aggregate_video_details(video, user, track){
 
   aggregate['track_name'] = track['track_name'];
   aggregate['track_description'] = track['track_description'];
+  console.log("aggregate: ", aggregate);
   return aggregate;
 }
 // Fetch videos
@@ -65,6 +66,7 @@ function fetch_videos(){
     loop_field = aggregate_video_details(videos[i], user_detail, track_detail);
     ret_detail.push(loop_field);
   }
+  console.log(ret_detail);
   return ret_detail;
 }
 
@@ -139,18 +141,27 @@ function get_all_skills() {
   }
 
 // Fetch Videos by track
-function fetch_videos_by_track(track_id){
+function fetch_videos_by_track(track_name){
+  var ret_url;
   $.grep( fetch_videos(), function( n, i ) {
-    return n.track_id === track_id;
+    if(n.track_name === track_id)
+      ret_url = n.video_url;
   });
+  return ret_url;
 }
 
 
-// Fetch Videos by track
+// Fetch Videos by speaker
 function fetch_videos_by_speaker(owner_name){
+  var ret_url;
+  console.log("Looking up video for: ", owner_name);
   $.grep( fetch_videos(), function( n, i ) {
-    return n.video_speaker_id === owner_name;
+    if(n.user_name === owner_name){
+      console.log("matched viedo found for: ", owner_name, n);
+      ret_url = n.video_url;
+    }
   });
+  return ret_url;
 }
 
 // Fetch Projects by track
@@ -237,13 +248,14 @@ function get_spotlight_students(){
   $('#student_spotlight_2_year').html(spot_users[1].user_details);
   $('#student_spotlight_2_subtext').html(spot_users[1].user_tagline);
 
-  var video_url = fetch_videos_by_speaker(spot_users[0].user_name);
-  console.log(video_url);
-  $('#student_spotlight_1_video').attr('href', video_url);
+  $('#student_spotlight_3_name').html(spot_users[2].user_name);
+  $('#student_spotlight_3_year').html(spot_users[2].user_details);
+  $('#student_spotlight_3_subtext').html(spot_users[2].user_tagline);
+  $('#student_spotlight_3_subtext_back').html(spot_users[2].user_tagline);
 
-  video_url = fetch_videos_by_speaker(spot_users[1].user_name);
-  console.log(video_url);
-  $('#student_spotlight_2_video').attr('href', video_url);
+  $('#student_spotlight_1_video').attr('href', fetch_videos_by_speaker(spot_users[0].user_name));
+  $('#student_spotlight_2_video').attr('href', fetch_videos_by_speaker(spot_users[1].user_name));
+  $('#student_spotlight_2_video').attr('href', fetch_videos_by_speaker(spot_users[2].user_name));
 }
 
 function get_spotlight_projects(){
