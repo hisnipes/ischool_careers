@@ -50,7 +50,6 @@ function aggregate_video_details(video, user, track){
 
   aggregate['track_name'] = track['track_name'];
   aggregate['track_description'] = track['track_description'];
-  console.log("aggregate: ", aggregate);
   return aggregate;
 }
 // Fetch videos
@@ -155,7 +154,6 @@ function fetch_videos_by_track(track_name){
 // Fetch Videos by speaker
 function fetch_videos_by_speaker(owner_name){
   var ret_url;
-  console.log("Looking up video for: ", owner_name);
   $.grep( fetch_videos(), function( n, i ) {
     if(n.user_name === owner_name){
       console.log("matched viedo found for: ", owner_name, n);
@@ -270,7 +268,7 @@ function get_spotlight_projects(){
   document.getElementById('project_spotlight_2_btn').href = spot_projects[1].project_media_url;
 
 }
-// Called when tabletop loads the spreadsheet
+// Called when tabletop loads the spreadsheet and on refresh of every page
 function on_data_load(data, tabletop){
   data_model = data;
   get_all_skills();
