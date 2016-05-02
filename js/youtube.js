@@ -8,7 +8,7 @@ $(document).ready(function(){
 	
 // BOOTSTRAP 3.0 - Open YouTube Video Dynamicaly in Modal Window
 // Modal Window for dynamically opening videos
-$('a[href^="http://www.youtube.com"]').on('click', function(e){
+$('a[href^="http://www.youtube.com"], [href^="https://www.youtube.com"]').on('click', function(e){
   // Store the query string variables and values
 	// Uses "jQuery Query Parser" plugin, to allow for various URL formats (could have extra parameters)
 	var queryString = $(this).attr('href').slice( $(this).attr('href').indexOf('?') + 1);
