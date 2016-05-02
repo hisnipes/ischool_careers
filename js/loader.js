@@ -249,7 +249,7 @@ function get_spotlight_students(){
 
 function get_spotlight_projects(){
   projects = data_model.Projects.all();
-  spot_projects =  get_2_randoms(projects);
+  spot_projects =  get_n_randoms(projects, 2);
 
   $('#project_spotlight_1_subtitle').html(spot_projects[0].project_subtitle);
   document.getElementById('project_spotlight_1').style.backgroundImage = "url(" + spot_projects[0].project_image_url + ")";
