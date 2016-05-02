@@ -14,24 +14,20 @@ function fetch_detail(model, val, key){
 function aggregate_project_details(project, user, track, skill){
   aggregate = {};
 
-  aggregate['project_id'] = project['id'];
   aggregate['project_title'] = project['project_title']
   aggregate['project_subtitle'] = project['project_subtitle']
   aggregate['project_video_url'] = project['project_video_url']
   aggregate['project_image_url'] = project['project_image_url']
   aggregate['project_article'] = project['project_article']
 
-  aggregate['user_id'] = user['id'];
   aggregate['user_name'] = user['user_name'];
   aggregate['user_email'] = user['user_email'];
   aggregate['user_tagline'] = user['user_tagline'];
   aggregate['user_linkedin'] = user['user_linkedin'];
 
-  aggregate['track_id'] = track['id'];
   aggregate['track_name'] = track['track_name'];
   aggregate['track_description'] = track['track_description'];
 
-  aggregate['skill_id'] = skill['id'];
   aggregate['skill_name'] = skill['skill_name'];
   aggregate['skill_description'] = skill['skill_description'];
 
@@ -42,18 +38,15 @@ function aggregate_project_details(project, user, track, skill){
 function aggregate_video_details(video, user, track){
   aggregate = {};
 
-  aggregate['video_id'] = video['id'];
   aggregate['video_title'] = video['video_title']
   aggregate['video_text'] = video['video_text']
   aggregate['video_url'] = video['video_url']
 
-  aggregate['user-id'] = user['id'];
   aggregate['user_name'] = user['user_name'];
   aggregate['user_email'] = user['user_email'];
   aggregate['user_tagline'] = user['user_tagline'];
   aggregate['user_linkedin'] = user['user_linkedin'];
 
-  aggregate['track_id'] = track['id'];
   aggregate['track_name'] = track['track_name'];
   aggregate['track_description'] = track['track_description'];
   return aggregate;
@@ -149,6 +142,14 @@ function get_all_skills() {
 function fetch_videos_by_track(track_id){
   $.grep( fetch_videos(), function( n, i ) {
     return n.track_id === track_id;
+  });
+}
+
+
+// Fetch Videos by track
+function fetch_videos_by_speaker(owner_name){
+  $.grep( fetch_videos(), function( n, i ) {
+    return n.video_speaker_id === owner_name;
   });
 }
 
