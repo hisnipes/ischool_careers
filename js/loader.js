@@ -286,10 +286,9 @@ $(document).ready(function(){
   var spl_arr = document.URL.split('/');
   var page = spl_arr[spl_arr.length-1];
 
-  if(page === 'index.html'){
+  if(page === '' || page === 'index.html'){
     Tabletop.init( { key: public_spreadsheet_url,
                    callback: on_data_load_index } );
-
   }
   else if(page === 'projects.html'){
     Tabletop.init( { key: public_spreadsheet_url,
